@@ -1,6 +1,6 @@
 [submodule "examples"]
 	path = examples
-	url = git@github.com:CrestFallenTurtle/go-evil-examples.git
+	url = https://github.com/CrestFallenTurtle/go-evil-examples
 [submodule "domains"]
 	path = domains
-	url = git@github.com:CrestFallenTurtle/go-evil-standard-lib.git
+	url = https://github.com/CrestFallenTurtle/go-evil-standard-lib
