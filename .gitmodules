@@ -1,0 +1,6 @@
+[submodule "go-evil-standard-lib"]
+	path = domains
+	url = https://github.com/CrestFallenTurtle/go-evil-standard-lib
+[submodule "go-evil-examples"]
+	path = examples
+	url = https://github.com/CrestFallenTurtle/go-evil-examples

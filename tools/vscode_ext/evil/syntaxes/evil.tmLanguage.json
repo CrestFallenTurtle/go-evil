@@ -1,0 +1,187 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Evil",
+	"patterns": [
+		{
+			"include": "#foreach"
+		},
+		{
+			"include": "#ifelse"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#function_start"
+		},
+		{
+			"include": "#call_functions_end"
+		},
+		{
+			"include": "#domain"
+		},
+		{
+			"include": "#imports"
+		},
+		{
+			"include": "#compiler_config"
+		},
+		{
+			"include": "#boolean"
+		},
+		{
+			"include": "#domain_function"
+		},
+		{
+			"include": "#inject_header"
+		},
+		{
+			"include": "#inject_code"
+		}
+	],
+	
+	"repository": {
+		"foreach": {
+			"patterns": [
+				{
+					"name": "keyword.control.evil",
+					"match": "\\b(foreach|end foreach)\\b"
+				}
+			]
+		},
+		
+		"ifelse": {
+			"patterns": [
+				{
+					"name": "keyword.control.evil",
+					"match": "\\b(if|else|end if)\\b"
+				}
+			]
+		},
+
+		"strings": {
+			"name": "comment.block",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "comment.block",
+					"match": "\".*\""
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.block",
+			"begin": "@",
+			"end": "@",
+			"patterns": [
+				{
+					"name": "comment.block",
+					"match": "\\\\."
+				}
+			]
+		},"function_start": {
+			"patterns": [
+				{
+					"name": "entity.name.function",
+					"match": "^boot|loop|end|call{1,1}"
+				}
+			]
+		},
+
+		"call_functions_end": {
+			"patterns": [
+				{
+					"name": "entity.name.function",
+					"match": "-> *(integer|boolean|string|none|null|nil){1,1} *{"
+				}
+			] 
+		},
+
+		"domain": {
+			"patterns": [
+				{
+					"name": "entity.name.class",
+					"match": "([a-z_#]+)::"
+				}
+			]
+		},
+		"domain_function": {
+			"patterns": [
+				{
+					"name": "entity.name.function",
+					"match": "([a-z_]+)"
+				}
+			]
+		},
+		"imports": {
+			"patterns": [
+				{
+					"name": "markup.bold",
+					"match": "use"
+				}
+			]
+		},
+		"compiler_config": {
+			"patterns": [
+				{
+					"name": "constant.character",
+					"match": "version"
+				},
+				{
+					"name": "constant.character",
+					"match": "os"
+				},
+				{
+					"name": "constant.character",
+					"match": "output"
+				},
+				{
+					"name": "constant.character",
+					"match": "arch"
+				},
+				{
+					"name":"constant.character",
+					"match": "obfuscate"
+				},
+				{
+					"name": "constant.character",
+					"match": "debugger_behavior"
+				}
+			]
+		},
+		"boolean":{
+			"patterns": [
+				{
+					"name": "entity.other",
+					"match": "\\b(false|true)\\b"
+				}
+			]
+		},
+		"inject_header":{
+			"patterns": [
+				{
+					"name": "constant.character",
+					"begin": "% *\\[",
+					"end": "\\] *%",
+					"match": "\n* *((.*|\n*)*?)\n*"
+				}
+			]
+		},
+		"inject_code":{
+			"patterns": [
+				{
+					"name": "constant.character",
+					"begin": "% *(boot|loop|end) *{",
+					"end": "} *%",
+					"match": "\n* *((.*|\n*)*?)\n*"
+				}
+			]
+		}
+
+	},
+	"scopeName": "source.evil"
+}

@@ -1,0 +1,5 @@
+.vscode
+builds/
+gevil
+*.so
+malware.go
