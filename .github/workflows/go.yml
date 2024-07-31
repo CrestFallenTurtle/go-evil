@@ -23,6 +23,9 @@ jobs:
 
     - name: Get dependencies
       run: make dependencies
+
+    - name: Install UPX
+      run: apt install upx -y
       
     - name: Build
       run: make default
